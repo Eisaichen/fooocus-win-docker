@@ -3,7 +3,7 @@ foreach ($n in $i.content.split()) {if ($n -match 'https://github.com/lllyasviel
 [string]$7z="$PWD"+'\temp'
 [string]$version="v$($url.substring($url.length-8,5).Replace('-','.'))"
 
-.\wget --no-hsts $url -O .\Fooocus.7z
+.\wget --no-hsts -q $url -O .\Fooocus.7z
 Invoke-Expression ".\7z\7za.exe x .\Fooocus.7z -o$7z"
 
 $zipName=(dir -Directory .\temp).name
