@@ -1,0 +1,21 @@
+networks:
+  fooocus:
+
+services:
+  fooocus:
+    container_name: fooocus
+    image: eisai/fooocus
+    isolation: process
+    networks:
+      - fooocus
+    cpu_count: 8
+    ports:
+      - "7865:7865"
+    environment:
+      - MODEL=default     # Choose from default, anime, realistic
+      - ARGS=--always-download-new-model
+    volumes:
+      - '.\models:C:\Fooocus\models'
+      - '.\outputs:C:\Fooocus\outputs'
+    devices:
+      - class/5B45201D-F2F2-4F3B-85BB-30FF1F953599     # Passing GPU, Dont Change. Delete this block if you dont want to use GPU
