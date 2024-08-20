@@ -9,9 +9,9 @@ COPY ./res C:/res
 COPY ./Fooocus C:/Fooocus
 COPY ./python_embeded C:/python_embeded
 
-RUN powershell Invoke-Command "takeown /F c:\res /R /D Y /A 1> $null" ; \
-    Invoke-Command "takeown /F c:\Fooocus /R /D Y 1> $null" ; \
-    Invoke-Command "takeown /F c:\python_embeded /R /D Y 1> $null" ; \
+RUN powershell takeown /F c:\res /R /D Y /A ; \
+    takeown /F c:\Fooocus /R /D Y ; \
+    takeown /F c:\python_embeded /R /D Y ; \
     Start-Process -wait -FilePath c:\res\vc_redist.x64.exe -ArgumentList '/install /passive /norestart' ; \
     Move-Item -Force 'c:\res\nvdll\*' 'C:\Windows\System32\' ; \
     Import-Certificate -FilePath c:\res\cacert.sst -CertStoreLocation 'Cert:\LocalMachine\Root' ; \
