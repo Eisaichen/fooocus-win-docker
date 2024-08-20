@@ -1,5 +1,5 @@
 Set-PSDebug -Trace 1
-$i=curl -Uri https://github.com/lllyasviel/Fooocus -UseBasicParsing
+$i=curl -Uri https://github.com/lllyasviel/Fooocus
 foreach ($n in $i.content.split()) {if ($n -match 'https://github.com/lllyasviel/Fooocus/releases/download/'){$url=[Regex]::Match($n, '(?<="\s*)[^"]+').Value.Replace('\','')}}
 [string]$7z="$PWD"+'\temp'
 [string]$version="v$($url.substring($url.length-8,5).Replace('-','.'))"
