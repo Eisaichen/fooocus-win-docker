@@ -9,10 +9,10 @@ COPY ./res C:/res
 COPY ./Fooocus C:/Fooocus
 COPY ./python_embeded C:/python_embeded
 
-RUN powershell takeown /F c:\res /R /D Y /A 1> $null ; \
-    takeown /F c:\Fooocus /R /D Y 1> $null ; \
-    takeown /F c:\python_embeded /R /D Y 1> $null ; \
-    Start-Process -wait -FilePath c:\res\vc_redist.x64.exe -ArgumentList '/install /passive /norestart' ; \
+RUN powershell -command "takeown /F c:\res /R /D Y /A 1> $null" ; \
+    powershell -command "takeown /F c:\Fooocus /R /D Y 1> $null" ; \
+    powershell -command "takeown /F c:\python_embeded /R /D Y 1> $null" ; \
+    powershell Start-Process -wait -FilePath c:\res\vc_redist.x64.exe -ArgumentList '/install /passive /norestart' ; \
     Move-Item -Force 'c:\res\nvdll\*' 'C:\Windows\System32\' ; \
     Import-Certificate -FilePath c:\res\cacert.sst -CertStoreLocation 'Cert:\LocalMachine\Root' ; \
     Move-Item -Force -Path 'c:\res\entry.bat' -Destination c:\Fooocus ; \
