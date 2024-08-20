@@ -1,3 +1,4 @@
+Set-PSDebug -Trace 1
 $i=curl -Uri https://github.com/lllyasviel/Fooocus -UseBasicParsing
 foreach ($n in $i.content.split()) {if ($n -match 'https://github.com/lllyasviel/Fooocus/releases/download/'){$url=[Regex]::Match($n, '(?<="\s*)[^"]+').Value.Replace('\','')}}
 [string]$7z="$PWD"+'\temp'
