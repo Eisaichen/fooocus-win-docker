@@ -1,4 +1,3 @@
-Set-PSDebug -Trace 1
 $i=Invoke-WebRequest -Uri https://github.com/lllyasviel/Fooocus
 foreach ($n in $i.content.split()) {if ($n -match 'https://github.com/lllyasviel/Fooocus/releases/download/'){$url=[Regex]::Match($n, '(?<="\s*)[^"]+').Value.Replace('\','')}}
 [string]$7z="$PWD"+'\temp'
