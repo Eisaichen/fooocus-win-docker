@@ -9,12 +9,9 @@ COPY ./res C:/res
 COPY ./Fooocus C:/Fooocus
 COPY ./python_embeded C:/python_embeded
 
-RUN powershell -command "takeown /F c:\res /R /D Y /A 1> $null" ; \
-    powershell -command "takeown /F c:\Fooocus /R /D Y 1> $null" ; \
-    powershell -command "takeown /F c:\python_embeded /R /D Y 1> $null" ; \
-    Start-Process -wait -FilePath c:\res\vc_redist.x64.exe -ArgumentList '/install /passive /norestart' ; \
-    Move-Item -Force 'c:\res\nvdll\*' 'C:\Windows\System32\' ; \
-    Import-Certificate -FilePath c:\res\cacert.sst -CertStoreLocation 'Cert:\LocalMachine\Root' ; \
+RUN powershell Start-Process -wait -FilePath c:\res\vc_redist.x64.exe -ArgumentList '/install /passive /norestart' ; \
+    Move-Item -Path c:\res\nvdll\System32\* -Destination C:\Windows\System32 ; \
+    Move-Item -Path c:\res\nvdll\SysWOW64\* -Destination C:\Windows\SysWOW64 ; \
     Move-Item -Force -Path 'c:\res\entry.bat' -Destination c:\Fooocus ; \
     rm -Recurse c:\res -Force ; \
     [Environment]::SetEnvironmentVariable('Path',"$([Environment]::GetEnvironmentVariable('Path','Machine'))"+';C:\python_embeded\Scripts;C:\python_embeded','Machine')
