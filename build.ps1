@@ -29,11 +29,12 @@ if ($env:GH_CI_LATEST -eq "true") {
 
 # Push
 if ($env:GH_CI_PUSH -eq "true") {
-    docker push eisai/ollama -a
+    docker push eisai/fooocus -a
 }
 
 # Clean up
 docker system prune --all -f
+rm .\Fooocus.7z
 
 
 
@@ -50,5 +51,5 @@ if ($env:GH_CI_LATEST -eq "true") {
 
 # Push
 if ($env:GH_CI_PUSH -eq "true") {
-    docker push eisai/ollama -a
+    docker push eisai/fooocus -a
 }
